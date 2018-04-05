@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { withTracker } from 'meteor/react-meteor-data';
+import history from './history';
+
 
 import { Posts } from '../api/posts.js';
 import Post from './Post.js';
@@ -23,6 +25,39 @@ class MainPage extends Component {
    localStorage.setItem('toggle', !this.state.toggle);
   }
 
+  submitLogin(event) {
+    event.preventDefault();
+    //Login User
+    var userName = $('[name=loginName]').val();
+    var password = $('[name=loginPassword]').val();
+    Meteor.loginWithPassword(userName, password, function(error){
+      if(error){
+        console.log(error.reason);
+      } else {
+        history.push('/app');
+      }
+    });
+  }
+  submitRegister(event) {
+    event.preventDefault();
+    //Register User
+    var email = $('[name=registerEmail]').val();
+    var userName = $('[name=registerName]').val();
+    var password = $('[name=registerPassword]').val();
+    Accounts.createUser({
+            email: email,
+            username: userName,
+            password: password,
+            createdAt: new Date()
+        }, function(error){
+          if(error){
+            console.log(error.reason);
+          } else {
+            history.push('/app');
+          }
+        });
+  }
+
   render() {
     return (
       <div className="container">
@@ -36,12 +71,18 @@ class MainPage extends Component {
           <div className="LoginContainer">
           <div className="headline">Sign Up</div>
           <div className="formContainer">
-            <form name="register">
-              <label htmlFor="registerEmail">E-Mail o. Benutzername
+            <form className="register" onSubmit={this.submitRegister.bind(this)}>
+              <label htmlFor="registerEmail">E-Mail
               <input type="email" name="registerEmail"></input>
-              </label> <br></br>
+              </label> 
+              <label htmlFor="registerName">Benutzername
+              <input type="text" name="registerName"></input>
+              </label>
               <label htmlFor="registerPassword">Password:
               <input type="password" name="registerPassword"></input>
+              </label>
+              <label htmlFor="registerPasswordRepeat">Password wiederholen:
+              <input type="password" name="registerPasswordRepeat"></input>
               </label>
               <span className="LoginLink">Bereits Mitglied?
               <button className="toggleLogin" onClick={this.toggleLogin}>
@@ -55,9 +96,9 @@ class MainPage extends Component {
           <div className="LoginContainer">
           <div className="headline">Login</div>
           <div className="formContainer">
-            <form name="login">
-              <label htmlFor="loginEmail">E-Mail o. Benutzername
-              <input type="email" name="loginEmail"></input>
+            <form className="login" onSubmit={this.submitLogin.bind(this)}>
+              <label htmlFor="loginName">Benutzername
+              <input type="text" name="loginName"></input>
               </label> <br></br>
               <label htmlFor="loginPassword">Password:
               <input type="password" name="loginPassword"></input>
