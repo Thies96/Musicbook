@@ -2,10 +2,24 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { withTracker } from 'meteor/react-meteor-data';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem } from 'reactstrap';
 
 import { Posts } from '../api/posts.js';
 import Post from './Post.js';
 import AccountsUIWrapper from './AccountsUIWrapper';
+import Menu from './Menu.js';
+
 
 // App component - represents the whole app
 class App extends Component {
@@ -43,9 +57,8 @@ class App extends Component {
     return (
       <div className="container">
         <header>
-          <h1> Musicbook </h1>
-
-          <AccountsUIWrapper />
+        <Menu />
+        </header>
           
           { this.props.currentUser ? 
           <form className="new-Post" onSubmit={this.handleSubmit.bind(this)} >
@@ -56,8 +69,6 @@ class App extends Component {
           />
           </form> : ''
         }
-        </header>
-
         <ul>
           {this.renderPosts()}
         </ul>

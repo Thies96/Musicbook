@@ -7,6 +7,7 @@ import App from './App';
 import MainPage from './MainPage';
 import Profile from './Profile';
 import NotFound from './NotFound';
+import Menu from './Menu';
 
 Meteor.startup(() => {
   render(
@@ -15,6 +16,7 @@ Meteor.startup(() => {
 	  		<Route exact path="/" component={MainPage}/>
 	  		<Route exact path="/app" component={App}/>
 	  		<Route exact path="/profile" component={Profile}/>
+	  		<Route exact path="/menu" component={Menu}/>
 	  		<Route component={NotFound}/>
 	  	</Switch>
   	</Router>,

@@ -10,7 +10,7 @@ import { Blaze } from 'meteor/blaze';
 
     // Use Meteor Blaze to render login buttons
     this.view = Blaze.render(Template.loginButtons,
-      ReactDOM.findDOMNode(this.refs.container));
+      ReactDOM.findDOMNode(this.refs.accounts));
   }
 
   componentWillUnmount() {
@@ -19,7 +19,7 @@ import { Blaze } from 'meteor/blaze';
   }
   render() {
     // Just render a placeholder container that will be filled in
-    return <span ref="container" />;
+    return <span ref="accounts" />;
   }
 }
 

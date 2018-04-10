@@ -37,13 +37,32 @@ header span {
   float: right;
   margin-right: 10em;
 }
+
+header div {
+  height: 100%;
+  width: 100%;
+  display: inline-flex;
+}
+
+div .menu {
+  display: inline-block;
+  margin: 0;
+}
+
+div .accounts{
+  display: inline-block;
+  margin: 0;
+}
+
 /* LOGIN BUTTON ÄNDERUNGEN (DROPDOWN) */
 #login-buttons {
+  float: right;
 }
 
 #login-dropdown-list{
   width: 180px;
 }
+
 
 h1 {
   font-size: 1.5em;

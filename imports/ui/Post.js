@@ -47,7 +47,7 @@ export default class Post extends Component {
         </button>
 
         <button className="delete" onClick={this.deletePost.bind(this)}>
-        <i class="fas fa-trash-alt"></i>
+        <i className="fas fa-trash-alt"></i>
         </button>
       </li>
     );

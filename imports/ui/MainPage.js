@@ -22,7 +22,7 @@ class MainPage extends Component {
 
   toggleLogin(){
    this.setState({toggle: !this.state.toggle});
-   localStorage.setItem('toggle', !this.state.toggle);
+   localStorage.setItem('toggle', !this.state.toggle);  
   }
 
   submitLogin(event) {
