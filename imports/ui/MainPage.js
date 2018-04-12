@@ -8,6 +8,7 @@ import history from './history';
 import { Posts } from '../api/posts.js';
 import Post from './Post.js';
 import AccountsUIWrapper from './AccountsUIWrapper';
+
 // App component - represents the whole app
 class MainPage extends Component {
   state = {toggle: true};
@@ -15,14 +16,14 @@ class MainPage extends Component {
   constructor(props) {
     super(props);
     var save = localStorage.getItem('toggle');
-    save == 'true' ? 
+    save == 'true' ?
     this.state = {toggle: true} : this.state={toggle:false};
     this.toggleLogin = this.toggleLogin.bind(this);
   }
 
   toggleLogin(){
    this.setState({toggle: !this.state.toggle});
-   localStorage.setItem('toggle', !this.state.toggle);  
+   localStorage.setItem('toggle', !this.state.toggle);
   }
 
   submitLogin(event) {
@@ -61,8 +62,8 @@ class MainPage extends Component {
   render() {
     return (
       <div className="container">
-        <header>
-          <h1> Startseite </h1>
+        <header className="navbar fixed-top">
+          <h1 className="navbar-brand"> Startseite </h1>
 
           <AccountsUIWrapper />
 
@@ -74,7 +75,7 @@ class MainPage extends Component {
             <form className="register" onSubmit={this.submitRegister.bind(this)}>
               <label htmlFor="registerEmail">E-Mail
               <input type="email" name="registerEmail"></input>
-              </label> 
+              </label>
               <label htmlFor="registerName">Benutzername
               <input type="text" name="registerName"></input>
               </label>
@@ -92,7 +93,7 @@ class MainPage extends Component {
               <input type="submit" value="Senden"></input>
             </form>
           </div>
-          </div>: 
+          </div>:
           <div className="LoginContainer">
           <div className="headline">Login</div>
           <div className="formContainer">
@@ -126,4 +127,4 @@ export default withTracker(() => {
     /*posts: Posts.find({}, { sort: { createdAt: -1 } }).fetch(),
     currentUser: Meteor.user(), */
   };
-})(MainPage); 
+})(MainPage);

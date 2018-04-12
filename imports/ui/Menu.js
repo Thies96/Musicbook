@@ -35,7 +35,7 @@ export default class Menu extends React.Component {
           <NavbarBrand href="/">Musicbook</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
+            <Nav className="navbar-nav ml-auto" navbar>
               <NavItem>
                 <NavLink href="/components/">Components</NavLink>
               </NavItem>
