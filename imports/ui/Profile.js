@@ -3,74 +3,53 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 
+import ProfileForm from './ProfileForm.js';
+import ProfileView from './ProfileView.js';
 import { Posts } from '../api/posts.js';
 import Post from './Post.js';
 import AccountsUIWrapper from './AccountsUIWrapper';
 
 // App component - represents the whole app
-class App extends Component {
+class Profile extends Component {
+  state = {toggle: false};
 
-  handleSubmit(event) {
-    event.preventDefault();
-
-    //find text field via react ref
-    const text = ReactDOM.findDOMNode(this.refs.newPost).value.trim();
-
-    Meteor.call('posts.insert', text);
-
-    //clear form
-    ReactDOM.findDOMNode(this.refs.newPost).value = '';
+  constructor(props) {
+    super(props);
+    var save = localStorage.getItem('toggle');
+    save == 'true' ? 
+    this.state = {toggle: true} : this.state={toggle:false};
+    this.toggleEdit = this.toggleEdit.bind(this);
   }
-
-  renderPosts() {
-    let filteredPosts= this.props.posts;
-
-    return filteredPosts.map((post) => {
-      const currentUserId = this.props.currentUser && this.props.currentUser._id;
-      const showPrivateButton = post.owner === currentUserId;
-
-      return (
-        <Post
-          key={post._id}
-          post={post}
-          showPrivateButton={showPrivateButton}
-        />
-      );
-    });
+  toggleEdit(){
+   this.setState({toggle: !this.state.toggle});
+   localStorage.setItem('toggle', !this.state.toggle);  
   }
 
   render() {
     return (
       <div className="container">
         <header>
-          <h1> Profile </h1>
-
-          <AccountsUIWrapper />
+          <h1> Profil </h1>
+          <AccountsUIWrapper />                  
+          </header>
           
-          { this.props.currentUser ? 
-          <form className="new-Post" onSubmit={this.handleSubmit.bind(this)} >
-          <input className="newPost"
-            type="text"
-            ref="newPost"
-            placeholder="Type a new Post!"
-          />
-          </form> : ''
-        }
-        </header>
+          <button className="toggleEdit" onClick={this.toggleEdit}>
+          Bearbeiten
+          </button>
 
-        <ul>
-          {this.renderPosts()}
-        </ul>
+          { this.props.currentUser ? <ProfileView /> : ''}
+          
+          { this.state.toggle ? <ProfileForm /> : ''}    
       </div>
     );
   }
 }
 
 export default withTracker(() => {
-  Meteor.subscribe('posts');
+  //Meteor.subscribe('posts');
 
   return {
-    posts: Posts.find({}, { sort: { createdAt: -1 } }).fetch(),
+    //posts: Posts.find({}, { sort: { createdAt: -1 } }).fetch(),
     currentUser: Meteor.user(),
   };
-})(App);
+})(Profile);

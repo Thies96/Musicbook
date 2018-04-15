@@ -18,12 +18,14 @@ body {
   font-size: 14px;
 }
 
+html body{
+  background-color:  #333333;
+}
+
 .container {
-  max-width: 100%;
+  width: 100%;
   margin: 0 auto;
-  min-height: 100%;
-  background-image: url('../images/mainBackground.jpg');
-  background-repeat: no-repeat;
+  height: 100%;
 }
 
 header {
@@ -33,7 +35,7 @@ header {
   color: white;
 }
 
-header span {
+/*header span {
   float: right;
   margin-right: 10em;
 }
@@ -52,7 +54,7 @@ div .menu {
 div .accounts{
   display: inline-block;
   margin: 0;
-}
+}*/
 
 /* LOGIN BUTTON ÄNDERUNGEN (DROPDOWN) */
 #login-buttons {
@@ -60,7 +62,7 @@ div .accounts{
 }
 
 #login-dropdown-list{
-  width: 180px;
+  width: 210px;
 }
 
 
@@ -161,11 +163,11 @@ header .hide-completed {
 }
 
 /* CSS FÜR DIE STARTSEITE UND LOGIN FORMULARE */
-form label {
+.formContainer label {
   display:inline-block;
 }
 
-form input {
+.formContainer input {
   display:block;
 }
 
@@ -232,6 +234,15 @@ form input[type=submit]{
   background:none;
   color:rgb(4,177,8);
   font-weight:bold;
+}
+/* CSS FÜR PROFILANSICHT */
+div .ProfileContainer {
+  color:white;
+  display: block;
+}
+div .ProfileFormContainer{
+  color: white;
+  display: inline-block;
 }
 /* ALLGEMEINES */
 @media (max-width: 600px) {
