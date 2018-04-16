@@ -16,27 +16,27 @@ class MainPage extends Component {
   constructor(props) {
     super(props);
     var save = localStorage.getItem('toggle');
-    save == 'true' ? 
+    save == 'true' ?
     this.state = {toggle: true} : this.state={toggle:false};
     this.toggleLogin = this.toggleLogin.bind(this);
   }
   toggleLogin(){
    this.setState({toggle: !this.state.toggle});
-   localStorage.setItem('toggle', !this.state.toggle);  
+   localStorage.setItem('toggle', !this.state.toggle);
   }
 
   render() {
     return (
       <div className="container">
-        <header>
-          <h1> Startseite </h1>
+        <header className="navbar fixed-top">
+          <h1 className="navbar-brand"> Startseite </h1>
 
           <AccountsUIWrapper />
 
         </header>
           <div className="LoginContainer">
           { this.state.toggle ?<RegistForm />:<LoginForm /> }
-          { this.state.toggle ? 
+          { this.state.toggle ?
               <span className="LoginLink">Bereits Registiert?
               <button className="toggleRegister" onClick={this.toggleLogin}>
               Login
@@ -62,4 +62,4 @@ export default withTracker(() => {
     /*posts: Posts.find({}, { sort: { createdAt: -1 } }).fetch(),
     currentUser: Meteor.user(), */
   };
-})(MainPage); 
+})(MainPage);
