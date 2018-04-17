@@ -18,10 +18,6 @@ body {
   font-size: 14px;
 }
 
-html body{
-  background-color:  #333333;
-}
-
 .container {
   width: 100%;
   margin: 0 auto;
@@ -31,8 +27,17 @@ html body{
 header {
  background-color:rgb(126,37,125);
   padding: 15px 15px 15px 15px;
+  margin-bottom: 6em;
   position: relative;
   color: white;
+}
+
+.menu {
+  background-color: rgb(126, 37, 125);
+}
+
+.nav-item {
+  background-color: rgb(126, 37, 125);
 }
 
 /*header span {
@@ -174,8 +179,8 @@ header .hide-completed {
 div .LoginContainer {
  background-color:rgb(126,37,125);
   float: right;
-  margin-right:5em;
-  margin-top: 5em;
+  margin-right:2em;
+  margin-top: 8em;
   border-radius: 20px;
   width: 350px;
   height:550px;
@@ -258,4 +263,3 @@ div .ProfileFormContainer{
     padding-bottom: 5px;
   }
 }
-

@@ -30,8 +30,8 @@ export default class Menu extends React.Component {
   }
   render() {
     return (
-      <div className="menu">
-        <Navbar color="light" light expand="md">
+      <div className="menu navbar fixed-top">
+        <Navbar dark expand="md">
           <NavbarBrand href="/">Musicbook</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
