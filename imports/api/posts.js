@@ -27,7 +27,7 @@ Meteor.methods({
 	Posts.insert({
 		text,
 		createdAt: new Date(),
-		likes: 0,
+		likedBy: [],
 		private: false,
 		owner: this.userId,
 		username: Meteor.users.findOne(this.userId).username,
@@ -46,8 +46,12 @@ Meteor.methods({
 	'posts.setLiked'(postId){
 		check(postId, String);
 
-		Posts.update(postId, { $inc: { likes: 1 } });
-	},
+		if (Posts.find( { likedBy : Meteor.users.findOne(this.userId).username } ).count() > 0)
+		{
+			Posts.update(postId, { $pull: { likedBy: Meteor.users.findOne(this.userId).username } });}
+		else{
+    		Posts.update(postId, { $addToSet: { likedBy: Meteor.users.findOne(this.userId).username } });}
+    	},
 	'posts.setPrivate'(postId, setToPrivate) {
 		check(postId, String);
 		check(setToPrivate, Boolean);
