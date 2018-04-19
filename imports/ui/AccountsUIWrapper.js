@@ -19,7 +19,6 @@ import { Blaze } from 'meteor/blaze';
   }
   render() {
     // Just render a placeholder container that will be filled in
-    return <span ref="accounts" />;
+    return <span ref="accounts" id="login-buttons" className="login-buttons-dropdown-align-right"/>;
   }
 }
-

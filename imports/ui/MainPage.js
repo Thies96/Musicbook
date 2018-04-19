@@ -29,7 +29,7 @@ class MainPage extends Component {
     return (
       <div className="container">
         <header className="navbar fixed-top">
-          <h1 className="navbar-brand"> Startseite </h1>
+          <h1 className="navbar-brand"> Musicbook </h1>
 
           <AccountsUIWrapper />
 
