@@ -7,10 +7,10 @@ export default class ProfileView extends Component {
 	render(){
 		return(
 			<div className="ProfileContainer">
-			<span>Benutzername: {Meteor.user().username} </span> <br></br>
+			<span className="Username">{Meteor.user().username} </span> <br></br>
 			<span>Email: {Meteor.user().emails[0].address}  </span> <br></br>
 			<span>Anzeigename: {Meteor.user().profile.displayname}</span><br></br>
-			<span>Profilbeschreibung: {Meteor.user().profile.description}</span><br></br>
+			<span>Über {Meteor.user().username}: {Meteor.user().profile.description}</span><br></br>
 			</div>
 			
 		);

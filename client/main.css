@@ -241,13 +241,19 @@ form input[type=submit]{
   font-weight:bold;
 }
 /* CSS FÜR PROFILANSICHT */
-div .ProfileContainer {
-  color:white;
-  display: block;
-}
-div .ProfileFormContainer{
-  color: white;
+div .content {
+  color:black;
   display: inline-block;
+  background-color:rgb(100,29,98);
+  padding: 2em;
+  border-radius: 20px;
+}
+
+div .status {
+  background-color:#111111;
+  color:red;
+  padding: 8px;
+  border-radius: 3px;
 }
 /* ALLGEMEINES */
 @media (max-width: 600px) {
