@@ -31,7 +31,15 @@ Meteor.methods({
 		private: false,
 		owner: this.userId,
 		username: Meteor.users.findOne(this.userId).username,
+		comments: [],
 	});
+	},
+
+	'posts.newComment'(postId, comment){
+		check(postId, String);
+		check(comment, String);
+
+		Posts.update(postId, { $push: { comments: comment}});
 	},
 	'posts.remove'(postId) {
 		check(postId, String);
@@ -46,7 +54,7 @@ Meteor.methods({
 	'posts.setLiked'(postId){
 		check(postId, String);
 
-		if (Posts.find( { likedBy : Meteor.users.findOne(this.userId).username } ).count() > 0)
+		if (Posts.find( { likedBy : Meteor.users.findOne(this.userId).username } ).count() >= 1)
 		{
 			Posts.update(postId, { $pull: { likedBy: Meteor.users.findOne(this.userId).username } });}
 		else{

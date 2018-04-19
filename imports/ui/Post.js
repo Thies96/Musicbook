@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
 
 import { Posts } from '../api/posts.js'
 
-// Post component - represents a single todo item
+// Post component - represents a single Post
 export default class Post extends Component {
-   toggleLiked() {
-      //count the like property +1 of its current value
+  toggleLiked() {
+  
   Meteor.call('posts.setLiked', this.props.post._id);
    }
 
@@ -18,6 +19,18 @@ export default class Post extends Component {
 
   togglePrivate(){
   	Meteor.call('posts.setPrivate', this.props.post._id, !this.props.post.private);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+    //find text field via react ref
+    const comment = ReactDOM.findDOMNode(this.refs.newComment).value.trim();
+
+    Meteor.call('posts.newComment', this.props.post._id, comment);
+
+    //clear form
+    ReactDOM.findDOMNode(this.refs.newComment).value = '';
   }
 
   render() {
@@ -34,6 +47,7 @@ export default class Post extends Component {
 
         <span className="text">{this.props.post.text}</span> <br></br>
 
+
         <span className="likeCount">{ this.props.post.likedBy.join(', ') } gefällt das</span>
 
       	{this.props.showPrivateButton ? (
@@ -49,7 +63,16 @@ export default class Post extends Component {
         <button className="delete" onClick={this.deletePost.bind(this)}>
         <i className="fas fa-trash-alt"></i>
         </button>
+        <form className="new-Comment" onSubmit={this.handleSubmit.bind(this)} >
+          <input className="newComment"
+            type="text"
+            ref="newComment"
+            placeholder="Type a new Comment!"
+          />
+        </form><br></br>
+        <span className="comments">{ this.props.post.comments.join(', ') }</span>
       </li>
+
     );
   }
 }
