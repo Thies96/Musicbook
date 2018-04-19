@@ -34,7 +34,7 @@ export default class Post extends Component {
 
         <span className="text">{this.props.post.text}</span> <br></br>
 
-        <span className="likeCount">{this.props.post.likes} Personen gefällt das</span>
+        <span className="likeCount">{ this.props.post.likedBy.join(', ') } gefällt das</span>
 
       	{this.props.showPrivateButton ? (
       		<button className="toggle-private" onClick={this.togglePrivate.bind(this)}>
