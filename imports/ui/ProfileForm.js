@@ -5,21 +5,41 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { Template } from 'meteor/templating';
 
 export default class ProfileForm extends Component {
-	
+	state = {error: false};
+
+  constructor(props) {
+    super(props);
+    this.setErrorTrue = this.setErrorTrue.bind(this);
+    this.setErrorFalse = this.setErrorFalse.bind(this);
+  }
+
+  setErrorTrue(){
+   this.setState({error: true});
+  }
+  setErrorFalse(){
+   this.setState({error: false});
+  }
+
 	submitDisplayName(event){
 		event.preventDefault();
 		var newName = $('[name=changeName]').val();
-		Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.displayname": newName}}, function(error){
-				return("Error");
-		});
+		if (newName != ""){
+			Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.displayname": newName}});
+	  		this.setErrorFalse();
+	  	} else {
+	  		this.setErrorTrue();
+	  	}
 	}
 
 	submitText(event){
 		event.preventDefault();
 		var newDescr = $('[name=changeText]').val();
-		Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.description": newDescr}}, function(error){
-				return("Error");
-		});
+		if (newDescr != ""){
+			Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.description": newDescr}});
+			this.setErrorFalse();
+		} else {
+			this.setErrorTrue();
+		}
 	}
 
 	render(){
@@ -38,6 +58,12 @@ export default class ProfileForm extends Component {
               </label>
               <input type="submit" value="Speichern"></input>
             </form>
+
+            {this.state.error ? 
+            <div className="status">
+            Ungültige Eingabe!
+            </div> : ""
+        	}
 
 			</div>
 			

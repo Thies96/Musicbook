@@ -32,14 +32,21 @@ class Profile extends Component {
           <h1> Profil </h1>
           <AccountsUIWrapper />                  
           </header>
-          
-          <button className="toggleEdit" onClick={this.toggleEdit}>
+          <div className="content">
+                    
+          { this.props.currentUser ? <ProfileView /> : ''}
+
+          {this.state.toggle ? 
+          <button className="edit" onClick={this.toggleEdit}>
+          Schließen
+          </button> :
+          <button className="edit" onClick={this.toggleEdit}>
           Bearbeiten
           </button>
-
-          { this.props.currentUser ? <ProfileView /> : ''}
+          }
           
           { this.state.toggle ? <ProfileForm /> : ''}    
+          </div>
       </div>
     );
   }
