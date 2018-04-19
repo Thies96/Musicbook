@@ -28,6 +28,15 @@ class MainPage extends Component {
   render() {
     return (
       <div className="container">
+
+        <div className="img-fluid"></div>
+
+        <div className="mask">
+          <h1 className="firstMask">Meet people.</h1>
+          <h1>Form a band.</h1>
+          <h1>Jam.</h1>
+        </div>
+
         <header className="navbar fixed-top">
           <h1 className="navbar-brand"> Musicbook </h1>
 
