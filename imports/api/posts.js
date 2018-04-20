@@ -54,7 +54,7 @@ Meteor.methods({
 	'posts.setLiked'(postId){
 		check(postId, String);
 
-		if (Posts.find( { likedBy : Meteor.users.findOne(this.userId).username } ).count() >= 1)
+		if (Posts.find( { _id: postId, likedBy : Meteor.users.findOne(this.userId).username } ).count() > 0)
 		{
 			Posts.update(postId, { $pull: { likedBy: Meteor.users.findOne(this.userId).username } });}
 		else{
