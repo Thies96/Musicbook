@@ -6,6 +6,13 @@ import { Comments } from '../api/comments.js';
 
 export const Posts = new Mongo.Collection('posts');
 
+var currentdate = new Date(); 
+var datetime = currentdate.getDate() + "."
+                + (currentdate.getMonth()+1)  + "." 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes();
+
 if (Meteor.isServer) {
 	//this code runs on server only
 	Meteor.publish('posts', function postsPublication(){
@@ -28,7 +35,7 @@ Meteor.methods({
 
 	Posts.insert({
 		text,
-		createdAt: new Date(),
+		createdAt: datetime,
 		likedBy: [],
 		private: false,
 		owner: this.userId,

@@ -4,12 +4,17 @@ import { check } from 'meteor/check';
 
 export const Comments = new Mongo.Collection('comments');
 
+var currentdate = new Date(); 
+var datetime = currentdate.getDate() + "."
+                + (currentdate.getMonth()+1)  + "." 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes();
+
 if (Meteor.isServer) {
 	//this code runs on server only
 	Meteor.publish('comments', function commentsPublication(){
-		return Comments.find(
-				{ owner: this.userId }
-		);
+		return Comments.find({});
 	});
 }
 
@@ -25,7 +30,7 @@ Meteor.methods({
 	Comments.insert({
 		text,
 		postId,
-		createdAt: new Date(),
+		createdAt: datetime,
 		owner: this.userId,
 		username: Meteor.users.findOne(this.userId).username,
 	});
@@ -39,7 +44,7 @@ Meteor.methods({
 		check(commentId, String);
 
 		const comment = Comments.findOne(commentId);
-		if (comment.private || comment.owner !== this.userId) {
+		if (comment.owner !== this.userId) {
 			throw new Meteor.Error('not-authorized');
 		}
 

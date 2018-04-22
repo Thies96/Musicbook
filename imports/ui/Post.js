@@ -5,14 +5,11 @@ import classnames from 'classnames';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
 
 import { Posts } from '../api/posts.js';
+import Comment from './Comment.js';
 import { Comments } from '../api/comments.js';
 
 // Post component - represents a single Post
 export default class Post extends Component {
-  getComs(){
-    Meteor.subscribe('comments');
-    Meteor.call('comments.getComments', this.props.post._id);
-  }
   toggleLiked() {
   Meteor.call('posts.setLiked', this.props.post._id);
    }
@@ -36,6 +33,7 @@ export default class Post extends Component {
     //clear form
     ReactDOM.findDOMNode(this.refs.newComment).value = '';
   }
+
 
   
   render() {
@@ -65,18 +63,16 @@ export default class Post extends Component {
         Like
         </button>
 
-        <button className="delete" onClick={this.deletePost.bind(this)}>
+        <button className="delete" onClick = {this.deletePost.bind(this)}>
         <i className="fas fa-trash-alt"></i>
         </button>
          <form className="new-Comment" onSubmit={this.handleSubmit.bind(this)} >
           <input className="newComment"
             type="text"
             ref="newComment"
-            placeholder="Type a new Post!"
+            placeholder="Type a new Comment!"
           />
           </form>
-        <span className="comments">{this.getComs.bind(this)}</span>
-        <br></br>
       </li>
 
     );
