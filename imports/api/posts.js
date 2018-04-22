@@ -2,6 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 
+import { Comments } from '../api/comments.js';
+
 export const Posts = new Mongo.Collection('posts');
 
 if (Meteor.isServer) {
@@ -33,13 +35,6 @@ Meteor.methods({
 		username: Meteor.users.findOne(this.userId).username,
 		comments: [],
 	});
-	},
-
-	'posts.newComment'(postId, comment){
-		check(postId, String);
-		check(comment, String);
-
-		Posts.update(postId, { $push: { comments: comment}});
 	},
 	'posts.remove'(postId) {
 		check(postId, String);

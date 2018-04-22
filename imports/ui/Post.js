@@ -4,12 +4,16 @@ import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
 
-import { Posts } from '../api/posts.js'
+import { Posts } from '../api/posts.js';
+import { Comments } from '../api/comments.js';
 
 // Post component - represents a single Post
 export default class Post extends Component {
+  getComs(){
+    Meteor.subscribe('comments');
+    Meteor.call('comments.getComments', this.props.post._id);
+  }
   toggleLiked() {
-  
   Meteor.call('posts.setLiked', this.props.post._id);
    }
 
@@ -25,14 +29,15 @@ export default class Post extends Component {
     event.preventDefault();
 
     //find text field via react ref
-    const comment = ReactDOM.findDOMNode(this.refs.newComment).value.trim();
+    const text = ReactDOM.findDOMNode(this.refs.newComment).value.trim();
 
-    Meteor.call('posts.newComment', this.props.post._id, comment);
+    Meteor.call('comments.insert', text, this.props.post._id);
 
     //clear form
     ReactDOM.findDOMNode(this.refs.newComment).value = '';
   }
 
+  
   render() {
   	//Give posts a different className when liked to enable dislike
   	const postClassname = classnames({
@@ -63,14 +68,15 @@ export default class Post extends Component {
         <button className="delete" onClick={this.deletePost.bind(this)}>
         <i className="fas fa-trash-alt"></i>
         </button>
-        <form className="new-Comment" onSubmit={this.handleSubmit.bind(this)} >
+         <form className="new-Comment" onSubmit={this.handleSubmit.bind(this)} >
           <input className="newComment"
             type="text"
             ref="newComment"
-            placeholder="Type a new Comment!"
+            placeholder="Type a new Post!"
           />
-        </form><br></br>
-        <span className="comments">{ this.props.post.comments.join(', ') }</span>
+          </form>
+        <span className="comments">{this.getComs.bind(this)}</span>
+        <br></br>
       </li>
 
     );

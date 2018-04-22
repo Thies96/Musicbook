@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -16,6 +15,7 @@ import {
   DropdownItem } from 'reactstrap';
 
 import { Posts } from '../api/posts.js';
+import { Comments } from '../api/comments.js';
 import Post from './Post.js';
 import AccountsUIWrapper from './AccountsUIWrapper';
 import Menu from './Menu.js';
@@ -79,9 +79,11 @@ class App extends Component {
 
 export default withTracker(() => {
   Meteor.subscribe('posts');
+  Meteor.subscribe('comments');
 
   return {
     posts: Posts.find({}, { sort: { createdAt: -1 } }).fetch(),
+    comments: Comments.find({}, { sort: { createdAt: -1 } }).fetch(),
     currentUser: Meteor.user(),
   };
 })(App);
