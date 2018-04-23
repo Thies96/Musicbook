@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
+import { withRouter } from "react-router-dom";
 
-export default class LoginForm extends Component {
+class LoginForm extends Component {
 
 
-	submitLogin(event) {
+	submitLogin(event){
     event.preventDefault();
     //Login User
     var userName = $('[name=loginName]').val();
     var password = $('[name=loginPassword]').val();
-    Meteor.loginWithPassword(userName, password, function(error){
+    Meteor.loginWithPassword(userName, password, (error) =>{
       if(error){
         console.log(error.reason);
       } else {
-        history.push('/app');
+        this.props.history.push('/App');
       }
     });
   }
@@ -37,3 +38,4 @@ export default class LoginForm extends Component {
 		);
 	}
 }
+export default withRouter(LoginForm);

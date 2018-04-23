@@ -9,8 +9,8 @@ import LoginForm from './LoginForm.js';
 import { Posts } from '../api/posts.js';
 import Post from './Post.js';
 import AccountsUIWrapper from './AccountsUIWrapper';
-// App component - represents the whole app
-class MainPage extends Component {
+
+export default class MainPage extends Component {
   state = {toggle: true};
 
   constructor(props) {
@@ -64,11 +64,3 @@ class MainPage extends Component {
   }
 }
 
-export default withTracker(() => {
-  //Meteor.subscribe('posts');
-
-  return {
-    /*posts: Posts.find({}, { sort: { createdAt: -1 } }).fetch(),
-    currentUser: Meteor.user(), */
-  };
-})(MainPage);

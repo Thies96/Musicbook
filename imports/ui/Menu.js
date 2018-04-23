@@ -40,7 +40,7 @@ export default class Menu extends React.Component {
                 <NavLink href="/">Homepage</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/Dashboard">Dashboard</NavLink>
+                <NavLink href="/App">Dashboard</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/Profile">Profile</NavLink>

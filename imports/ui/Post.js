@@ -89,8 +89,8 @@ export default class Post extends Component {
             placeholder="Type a new Comment!"
           />
           </form>
-          {this.renderComments()}
-      </li>
+         {this.renderComments()}
+         </li>
 
     );
   }

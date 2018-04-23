@@ -64,7 +64,7 @@ class App extends Component {
         <Menu />
         </header>
           
-          { this.props.currentUser ? 
+         <center> { this.props.currentUser ? 
           <form className="new-Post" onSubmit={this.handleSubmit.bind(this)} >
           <input className="newPost"
             type="text"
@@ -72,7 +72,7 @@ class App extends Component {
             placeholder="Type a new Post!"
           />
           </form> : ''
-        }
+        } </center>
         <ul>
           {this.renderPosts()}
         </ul>

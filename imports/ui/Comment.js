@@ -16,7 +16,7 @@ export default class Comment extends Component {
   render() {
 
     return (
-        <li>
+        <ul>
       	<span className="author"> <strong>{this.props.comment.username}</strong> </span> <br></br>
 
         <span className="text">{this.props.comment.text}</span> <br></br>
@@ -25,7 +25,7 @@ export default class Comment extends Component {
         <button className="delete" onClick={this.deleteComment.bind(this)}>
         <i className="fas fa-trash-alt"></i>
         </button>
-        </li>
+        </ul>
     );
   }
 }

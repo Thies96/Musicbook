@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
+import { withRouter } from "react-router-dom";
 
-export default class RegistForm extends Component {
+class RegistForm extends Component {
 
 	submitRegister(event) {
     event.preventDefault();
@@ -15,11 +16,11 @@ export default class RegistForm extends Component {
             username: userName,
             password: password,
             createdAt: new Date()
-        }, function(error){
+        }, (error) => {
           if(error){
             console.log(error.reason);
           } else {
-            history.push('/app');
+            this.props.history.push('/app');
           }
         });
   }
@@ -49,3 +50,5 @@ export default class RegistForm extends Component {
 		);
 	}
 }
+
+export default withRouter(RegistForm);
