@@ -42,21 +42,6 @@ class App extends Component {
     });
   }
 
-    renderComments() {
-    let filteredComments = this.props.comments;
-
-    return filteredComments.map((comment) => {
-    const currentUserId = this.props.currentUser && this.props.currentUser._id;
-
-      return (
-        <Comment
-          key={comment._id}
-          comment={comment}
-        />
-      );
-    });
-  }
-
 
   handleSubmit(event) {
     event.preventDefault();
@@ -90,7 +75,6 @@ class App extends Component {
         }
         <ul>
           {this.renderPosts()}
-          {this.renderComments()}
         </ul>
       </div>
     );

@@ -6,6 +6,7 @@ import '../../node_modules/font-awesome/css/font-awesome.min.css';
 
 import { Posts } from '../api/posts.js';
 import Comment from './Comment.js';
+import App from './App.js';
 import { Comments } from '../api/comments.js';
 
 // Post component - represents a single Post
@@ -32,6 +33,21 @@ export default class Post extends Component {
 
     //clear form
     ReactDOM.findDOMNode(this.refs.newComment).value = '';
+  }
+
+  renderComments() {
+    let filteredComments = Comments.find({postId: this.props.post._id}, { sort: { createdAt: -1 } }).fetch();
+
+    return filteredComments.map((comment) => {
+    const currentUserId = this.props.currentUser && this.props.currentUser._id;
+
+      return (
+        <Comment
+          key={comment._id}
+          comment={comment}
+        />
+      );
+    });
   }
 
 
@@ -73,6 +89,7 @@ export default class Post extends Component {
             placeholder="Type a new Comment!"
           />
           </form>
+          {this.renderComments()}
       </li>
 
     );
