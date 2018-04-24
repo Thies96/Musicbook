@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import { Meteor } from 'meteor/meteor';
+import classnames from 'classnames';
 import {
   Collapse,
   Navbar,
@@ -13,19 +14,18 @@ import {
   DropdownMenu,
   DropdownItem } from 'reactstrap';
 import AccountsUIWrapper from './AccountsUIWrapper';
+import { withRouter } from "react-router-dom";
 
-export default class Menu extends React.Component {
-  constructor(props) {
-    super(props);
+class Menu extends React.Component {
 
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
-  }
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
+  submitLogout(event) {
+    event.preventDefault();
+    Meteor.logout((error) =>{
+      if(error){
+        console.log(error.reason);
+      } else {
+        this.props.history.push('/');
+      }
     });
   }
   render() {
@@ -33,9 +33,7 @@ export default class Menu extends React.Component {
       <div className="menu navbar fixed-top">
         <Navbar dark expand="md">
           <NavbarBrand href="/">Musicbook</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
+            <Nav navbar>
               <NavItem>
                 <NavLink href="/">Homepage</NavLink>
               </NavItem>
@@ -46,12 +44,14 @@ export default class Menu extends React.Component {
                 <NavLink href="/Profile">Profile</NavLink>
               </NavItem>
             </Nav>
-          </Collapse>
+            <Nav navbar right="true">
+              <NavItem>
+                <NavLink onClick= {this.submitLogout.bind(this)}>Logout</NavLink>
+              </NavItem>
+            </Nav>
         </Navbar>
-        <div className="accounts">
-        <AccountsUIWrapper />
-      </div>
       </div>
     );
   }
 }
+export default withRouter(Menu);

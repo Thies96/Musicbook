@@ -40,8 +40,6 @@ export default class MainPage extends Component {
         <header className="navbar fixed-top">
           <h1 className="navbar-brand"> Musicbook </h1>
 
-          <AccountsUIWrapper />
-
         </header>
           <div className="LoginContainer">
           { this.state.toggle ?<RegistForm />:<LoginForm /> }
