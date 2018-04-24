@@ -8,6 +8,7 @@ import ProfileView from './ProfileView.js';
 import { Posts } from '../api/posts.js';
 import Post from './Post.js';
 import AccountsUIWrapper from './AccountsUIWrapper';
+import Menu from './Menu.js';
 
 // App component - represents the whole app
 class Profile extends Component {
@@ -29,11 +30,9 @@ class Profile extends Component {
     return (
       <div className="container">
         <header>
-          <h1> Profil </h1>
-          <AccountsUIWrapper />                  
+          <Menu />               
           </header>
-          <div className="content">
-                    
+          <div className="content">                    
           { this.props.currentUser ? <ProfileView /> : ''}
 
           {this.state.toggle ? 

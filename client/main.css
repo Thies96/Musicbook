@@ -197,7 +197,7 @@ li.checked .text {
 }
 
 li.private {
-  background: #eee;
+  background: #222222;
   border-color: #ddd;
 }
 
@@ -280,13 +280,16 @@ form input[type=submit]{
 }
 /* CSS FÜR PROFILANSICHT */
 div .content {
-  color:black;
+  color:white;
   display: inline-block;
   background-color:rgb(100,29,98);
   padding: 2em;
   border-radius: 20px;
 }
 
+div .content button {
+  margin: 1em;
+}
 div .status {
   background-color:#111111;
   color:red;

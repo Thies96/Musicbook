@@ -39,7 +39,7 @@ Meteor.methods({
 		likedBy: [],
 		private: false,
 		owner: this.userId,
-		username: Meteor.users.findOne(this.userId).username,
+		username: Meteor.users.findOne(this.userId).profile.displayname,
 		comments: [],
 	});
 	},

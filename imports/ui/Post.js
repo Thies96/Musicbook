@@ -71,7 +71,7 @@ export default class Post extends Component {
 
       	{this.props.showPrivateButton ? (
       		<button className="toggle-private" onClick={this.togglePrivate.bind(this)}>
-      		{this.props.post.private ? 'Private' : 'Public'}
+      		{this.props.post.private ? 'Public' : 'Private'}
       		</button>
       	):''}
 
