@@ -23,7 +23,7 @@ export default class ProfileForm extends Component {
   	//Submit Funktionen zum ändern der beschreibung und des Nicknames
 	submitDisplayName(event){
 		event.preventDefault();
-		var newName = $('[name=changeName]').val();+
+		var newName = $('[name=changeName]').val();
 		//leere Felder werden nicht gespeichert
 		if (newName != ""){
 			Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.displayname": newName}});
