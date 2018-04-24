@@ -15,6 +15,7 @@ class RegistForm extends Component {
             email: email,
             username: userName,
             password: password,
+            profile:{displayname: userName, description: 'Schreibe etwas Über dich!'},
             createdAt: new Date()
         }, (error) => {
           if(error){
