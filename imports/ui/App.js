@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { withTracker } from 'meteor/react-meteor-data';
+//Bootstrap Components
 import {
   Collapse,
   Navbar,
@@ -24,7 +25,7 @@ import Menu from './Menu.js';
 
 // App component - represents the whole app
 class App extends Component {
-
+  //
   renderPosts() {
     let filteredPosts= this.props.posts;
 
@@ -46,12 +47,12 @@ class App extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    //find text field via react ref
+    //finde Text Feld mit react ref
     const text = ReactDOM.findDOMNode(this.refs.newPost).value.trim();
 
     Meteor.call('posts.insert', text);
 
-    //clear form
+    //formular leeren
     ReactDOM.findDOMNode(this.refs.newPost).value = '';
   }
 

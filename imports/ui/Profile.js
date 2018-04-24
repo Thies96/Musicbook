@@ -13,7 +13,7 @@ import Menu from './Menu.js';
 // App component - represents the whole app
 class Profile extends Component {
   state = {toggle: false};
-
+  //Hier wechselt der state die Bearbeitung des Profils
   constructor(props) {
     super(props);
     var save = localStorage.getItem('toggle');

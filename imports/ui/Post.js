@@ -11,6 +11,7 @@ import { Comments } from '../api/comments.js';
 
 // Post component - represents a single Post
 export default class Post extends Component {
+  //Funktionsaufrufe aus der Post API
   toggleLiked() {
   Meteor.call('posts.setLiked', this.props.post._id);
    }
@@ -23,6 +24,7 @@ export default class Post extends Component {
   	Meteor.call('posts.setPrivate', this.props.post._id, !this.props.post.private);
   }
 
+  //event Handler für das Absenden von Kommentaren
   handleSubmit(event) {
     event.preventDefault();
 
@@ -53,7 +55,7 @@ export default class Post extends Component {
 
   
   render() {
-  	//Give posts a different className when liked to enable dislike
+  	//Posts bekommen ein neues Classname attribut wenn geliked um sie später unterschiedlich zu verarbeiten
   	const postClassname = classnames({
   		liked: this.props.post.likes ? 'liked' : '',
   		private: this.props.post.private,

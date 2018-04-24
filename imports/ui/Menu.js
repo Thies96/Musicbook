@@ -18,6 +18,7 @@ import { withRouter } from "react-router-dom";
 
 class Menu extends React.Component {
 
+  //Logout Logik + redirect zur Startseite
   submitLogout(event) {
     event.preventDefault();
     Meteor.logout((error) =>{

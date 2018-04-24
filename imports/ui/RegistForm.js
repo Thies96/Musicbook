@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 
 class RegistForm extends Component {
 
+  //RegistrierungsFunktion 
 	submitRegister(event) {
     event.preventDefault();
     //Register User
@@ -15,6 +16,7 @@ class RegistForm extends Component {
             email: email,
             username: userName,
             password: password,
+            //standard Werte für felder die Später selbst bearbeitet werden
             profile:{displayname: userName, description: 'Schreibe etwas Über dich!'},
             createdAt: new Date()
         }, (error) => {

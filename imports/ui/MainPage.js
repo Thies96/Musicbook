@@ -12,7 +12,7 @@ import AccountsUIWrapper from './AccountsUIWrapper';
 
 export default class MainPage extends Component {
   state = {toggle: true};
-
+  //localStorage speicher den State auch nach neuladen der seite
   constructor(props) {
     super(props);
     var save = localStorage.getItem('toggle');
@@ -20,6 +20,7 @@ export default class MainPage extends Component {
     this.state = {toggle: true} : this.state={toggle:false};
     this.toggleLogin = this.toggleLogin.bind(this);
   }
+  //Mit hilfe vom State wird zwischen Login und Registrierungsformular gewechselt
   toggleLogin(){
    this.setState({toggle: !this.state.toggle});
    localStorage.setItem('toggle', !this.state.toggle);

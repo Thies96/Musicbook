@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Template } from 'meteor/templating';
 
+//Formular für die Bearbeitung der Profildaten
 export default class ProfileForm extends Component {
 	state = {error: false};
 
@@ -19,10 +20,11 @@ export default class ProfileForm extends Component {
   setErrorFalse(){
    this.setState({error: false});
   }
-
+  	//Submit Funktionen zum ändern der beschreibung und des Nicknames
 	submitDisplayName(event){
 		event.preventDefault();
-		var newName = $('[name=changeName]').val();
+		var newName = $('[name=changeName]').val();+
+		//leere Felder werden nicht gespeichert
 		if (newName != ""){
 			Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.displayname": newName}});
 	  		this.setErrorFalse();
