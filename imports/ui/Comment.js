@@ -7,7 +7,6 @@ import { Posts } from '../api/posts.js';
 import Post from './Post.js';
 import { Comments } from '../api/comments.js';
 
-// Post component - represents a single Post
 export default class Comment extends Component {
   deleteComment(){
     Meteor.call('comments.remove', this.props.comment._id);

@@ -9,7 +9,6 @@ import Comment from './Comment.js';
 import App from './App.js';
 import { Comments } from '../api/comments.js';
 
-// Post component - represents a single Post
 export default class Post extends Component {
   //Funktionsaufrufe aus der Post API
   toggleLiked() {
